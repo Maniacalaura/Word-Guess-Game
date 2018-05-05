@@ -16,7 +16,7 @@ window.onload = function() {
     var hasFinished = false;
     var wordIndex;
     
-    const maxTries = 7
+    const maxTries = 10
 
     function resetGame() {
         guessesRemaining = maxTries;
@@ -47,45 +47,19 @@ window.onload = function() {
         }
         function updateDisplay() {
 
-            document.getElementById("wins").innerText = wins;
-            document.getElementById("actualWord").innerText = "";
+            document.getElementById("wins").innerHTML = wins;
+            document.getElementById("actualWord").innerHTML = "";
+
             for (var i = 0; i < actualWord.length; i++) {
-                document.getElementById("currentWord").innerText += actualWord[i];
+                document.getElementById("currentWord").innerHTML += actualWord[i];
             }
-            document.getElementById("guessesRemaining").innerText = guessesRemaining;
-            document.getElementById("lettersGuessed").innerText = lettersGuessed;
-            if(guessesRemaining <= 0) {
-                document.getElementById("gameover-image").style.cssText = "display: block";
+            document.getElementById("guessesRemaining").innerHTML = guessesRemaining;
+            document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
+
+            if(guessesRemaining === 0) {
                 document.getElementById("pressKeyTryAgain").style.cssText = "display:block";
                 hasFinished = true;
             }
         }
-        function updateHangmanImage() {
-            document.getElementById("title-image").src = "assets/images/HangmanTitle.png" + (maxTries - guessesRemaining) + ".png";
-            }
-
-            document.onkeydown = function(event) {
-                if(hasFinished) {
-                    resetGame();
-                    hasFinished = false;
-                } else {
-                
-                    if(event.keyCode >= 65 && event.keyCode <= 90) {
-                        makeGuess(event.key.toLowerCase());
-                    }
-                }   
-            }
-        function makeGuess(letter) {
-            if (guessesRemaining > 0) {
-                if (!gameStarted) {
-                    gameStarted = true;
-                }
-        
-                
-                if (lettersGuessed.indexOf(letter) === -1) {
-                    lettersGuessed.push(letter);
-                    evaluateGuess(letter);
-                }
-            }
-        }
+    
     }
