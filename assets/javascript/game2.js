@@ -11,6 +11,7 @@ window.onload = function() {
     var randomBreed = breeds[Math.floor(Math.random() * (breeds.length))];
     console.log(randomBreed);
     
+    document.onkeyup= function() {start()};
 //functions
     function startGame() {
  
@@ -21,6 +22,7 @@ window.onload = function() {
         guessesLeft = 10;
 
     document.getElementById('guessesLeft').innerHTML= guessesLeft;
+    console.log(guessesLeft + "strings");
    }
 
     document.onkeyup = function(event)
@@ -35,7 +37,8 @@ window.onload = function() {
                 {
                     wordBlanks[i] = lettersGuessed;
                     console.log(wordBlanks);
-                    innerHTML = lettersGuessed
+                    document.getElementById('wordBlanks').innerHTML = lettersGuessed
+                    
                 }    
             }
         }
@@ -43,6 +46,7 @@ window.onload = function() {
         {
             wrongLetter.push(lettersGuessed);
             guessesLeft --;
+            document.getElementById('lettersGuessed').innerHTML = wrongLetter
             console.log(wrongLetter);
         }
     
